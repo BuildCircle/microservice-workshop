@@ -45,20 +45,21 @@ Go to [http://localhost:5000](http://localhost:5000)
 # Superhero endpoint
 We are going to create an API endpoint `/heros` that returns us a list of superheros.
 
+
 ## 1. Create test project
 ```
 dotnet new xunit --name MicroserviceWorkshop.Tests
 dotnet sln MicroserviceWorkshop.sln add MicroserviceWorkshop.Tests/MicroserviceWorkshop.Tests.csproj
 ```
 
-## 2. Install MVC
 
+## 2. Install MVC
 ```
 dotnet add package Microsoft.AspNetCore.Mvc
 ```
 
-## 3. Add MVC package
 
+## 3. Add MVC package
 - Open `Startup.cs`
 - Add MVC module to the web pipeline in the `Configure` method
 ```
@@ -69,8 +70,8 @@ app.UseMvc();
 services.AddMvc();
 ```
 
-## 4. Add Heros Controller
 
+## 4. Add Heros Controller
 - Create `Controllers` folder
 - Add `HerosController` class inside `Controllers` folder...
 ```
