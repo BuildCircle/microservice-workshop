@@ -13,7 +13,7 @@ or
 
 [Download installer](https://www.microsoft.com/net/download)
 
-# 2. Create the project
+# 2. Create web project
 
 To see available templates
 ```
@@ -23,4 +23,14 @@ dotnet new
 Create a new empty web project
 ```
 dotnet new web
+```
+
+Run it
+```
+dotnet run
+```
+
+Test it
+```
+http://localhost:5000
 ```
