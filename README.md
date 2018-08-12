@@ -22,9 +22,14 @@ See available new project templates
 dotnet new
 ```
 
+Create a new solution
+```
+dotnet new sln --name MicroservicesWorkshop
+```
+
 Create a new empty web project
 ```
-dotnet new web
+dotnet new web --name MicroservicesWorkshop
 ```
 
 
@@ -38,6 +43,11 @@ Go to [http://localhost:5000](http://localhost:5000)
 
 # Superhero endpoint
 We are going to create an API endpoint `/heros` that returns us a list of superheros.
+
+## 1. Create test project
+```
+dotnet new xunit --name MicroservicesWorkshop.Tests
+```
 
 ## 1. Install MVC
 
