@@ -24,18 +24,19 @@ dotnet new
 
 Create a new solution
 ```
-dotnet new sln --name MicroservicesWorkshop
+dotnet new sln --name MicroserviceWorkshop
 ```
 
 Create a new empty web project
 ```
-dotnet new web --name MicroservicesWorkshop
+dotnet new web --name MicroserviceWorkshop
+dotnet sln MicroserviceWorkshop.sln add MicroserviceWorkshop/MicroserviceWorkshop.csproj
 ```
 
 
 ## 3. Run it
 ```
-dotnet run
+dotnet run --project MicroserviceWorkshop/MicroserviceWorkshop.csproj
 ```
 Go to [http://localhost:5000](http://localhost:5000)
 
@@ -46,16 +47,17 @@ We are going to create an API endpoint `/heros` that returns us a list of superh
 
 ## 1. Create test project
 ```
-dotnet new xunit --name MicroservicesWorkshop.Tests
+dotnet new xunit --name MicroserviceWorkshop.Tests
+dotnet sln MicroserviceWorkshop.sln add MicroserviceWorkshop.Tests/MicroserviceWorkshop.Tests.csproj
 ```
 
-## 1. Install MVC
+## 2. Install MVC
 
 ```
 dotnet add package Microsoft.AspNetCore.Mvc
 ```
 
-## 2. Add MVC package
+## 3. Add MVC package
 
 - Open `Startup.cs`
 - Add MVC module to the web pipeline in the `Configure` method
@@ -67,7 +69,7 @@ app.UseMvc();
 services.AddMvc();
 ```
 
-## 3. Add Heros Controller
+## 4. Add Heros Controller
 
 - Create `Controllers` folder
 - Add `HerosController` class inside `Controllers` folder...
