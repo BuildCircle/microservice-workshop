@@ -1,6 +1,7 @@
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace MicroserviceWorkshop
 {
@@ -16,7 +17,11 @@ namespace MicroserviceWorkshop
 
         public async Task<IActionResult> Get()
         {
-            return Ok(await _charactersProvider.GetCharacters());
+            var characters = await _charactersProvider.GetCharacters();
+            
+            return Ok(new {
+                Items = characters.Items.Where(x => x.Type == "hero")
+            });
         }
     }
 }

@@ -34,7 +34,14 @@ namespace MicroservicesWorkshop.Tests
                     new CharacterResponse
                     {
                         Name = "Batman",
-                        Score = 8.3
+                        Score = 8.3,
+                        Type = "hero"
+                    },
+                    new CharacterResponse
+                    {
+                        Name = "Joker",
+                        Score = 8.2,
+                        Type = "villain"
                     }
                 }
             });
