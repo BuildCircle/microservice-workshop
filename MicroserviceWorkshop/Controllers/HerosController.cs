@@ -1,4 +1,5 @@
 
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroserviceWorkshop
@@ -6,16 +7,16 @@ namespace MicroserviceWorkshop
     [Route("heros")]
     public class HerosController : Controller
     {
-        public IActionResult Get()
+        private readonly ICharactersProvider _charactersProvider;
+
+        public HerosController(ICharactersProvider charactersProvider)
         {
-            return Ok(new {
-                items = new [] {
-                    new {
-                        name = "Batman",
-                        score = 8.3
-                    }
-                }
-            });
+            _charactersProvider = charactersProvider;
+        }
+
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await _charactersProvider.GetCharacters());
         }
     }
 }
