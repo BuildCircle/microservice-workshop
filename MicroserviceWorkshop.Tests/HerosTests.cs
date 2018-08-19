@@ -21,7 +21,8 @@ namespace MicroservicesWorkshop.Tests
 
             var startup = new WebHostBuilder()
                             .UseStartup<Startup>()
-                            .ConfigureServices(x => {
+                            .ConfigureServices(x => 
+                            {
                                 x.AddSingleton<ICharactersProvider>(charactersProvider);
                             });
             var testServer = new TestServer(startup);
