@@ -6,7 +6,7 @@ namespace MicroserviceWorkshop
 {
     internal class CharactersProvider : ICharactersProvider
     {
-        const string charactersUri = "http://localhost:8000/build-circle/characters.json";
+        const string charactersUri = "https://s3.eu-west-2.amazonaws.com/build-circle/characters.json";
         HttpClient _client = new HttpClient();
         
 

@@ -105,5 +105,9 @@ namespace MicroserviceWorkshop
 }
 ```
 
-
 https://s3.eu-west-2.amazonaws.com/build-circle/characters.json
+
+```
+docker build .
+docker run -p 5000:80 -d <container-id>
+```
