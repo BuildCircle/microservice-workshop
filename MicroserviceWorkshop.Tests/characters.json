@@ -1,0 +1,42 @@
+{
+    "items": [{
+        "name": "Batman",
+        "score": 8.3
+    },
+    {
+        "name": "Joker",
+        "score": 8.2
+    },
+    {
+        "name": "Superman",
+        "score": 9.6
+    },
+    {
+        "name": "Gamora",
+        "score": 8.3
+    },
+    {
+        "name": "Thanos",
+        "score": 9.9
+    },
+    {
+        "name": "Wonder Woman",
+        "score": 8.7
+    },
+    {
+        "name": "Aquaman",
+        "score": 3.5
+    },
+    {
+        "name": "Thor",
+        "score": 9.2
+    },
+    {
+        "name": "Spiderman",
+        "score": 7.9
+    },
+    {
+        "name": "Harley Quinn",
+        "score": 7.3
+    }]
+}
