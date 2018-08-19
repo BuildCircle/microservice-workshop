@@ -2,10 +2,9 @@
 
 Goal: To build and host .NET Core API from scratch with supporting tests.
 
-# Hello World
+# Prerequesits
+- Install dotnet
 
-
-## 1. Install dotnet
 Chocolatey
 ```
 choco install dotnetcore-sdk
@@ -15,6 +14,9 @@ or
 
 [Download installer](https://www.microsoft.com/net/download)
 
+- Install docker
+
+[Download installer](https://www.docker.com/products/docker-desktop)
 
 ## 2. Create web project
 See available new project templates
@@ -42,7 +44,7 @@ Go to [http://localhost:5000](http://localhost:5000)
 
 
 
-# Superhero endpoint
+# Heros endpoint
 We are going to create an API endpoint `/heros` that returns us a list of superheros.
 
 

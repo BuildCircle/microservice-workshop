@@ -1,0 +1,10 @@
+FROM scality/s3server
+
+COPY ./characters.json /usr/src/app/localData/S3/build-circle/characters.json
+
+
+
+ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
+CMD [ "npm", "start" ]
+
+EXPOSE 8000
