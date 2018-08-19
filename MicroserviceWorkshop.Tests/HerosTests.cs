@@ -3,10 +3,10 @@ using Xunit;
 
 namespace MicroservicesWorkshop.Tests
 {
-    public class UnitTest1
+    public class HerosTests
     {
         [Fact]
-        public void Test1()
+        public void CanGetHeros()
         {
             
         }

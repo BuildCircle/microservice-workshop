@@ -50,16 +50,22 @@ We are going to create an API endpoint `/heros` that returns us a list of superh
 ```
 dotnet new xunit --name MicroserviceWorkshop.Tests
 dotnet sln MicroserviceWorkshop.sln add MicroserviceWorkshop.Tests/MicroserviceWorkshop.Tests.csproj
+dotnet add MicroserviceWorkshop.Tests reference MicroserviceWorkshop
+```
+
+## 2. Run tests
+```
+dotnet test MicroserviceWorkshop.Tests
 ```
 
 
-## 2. Install MVC
+## 3. Install MVC
 ```
 dotnet add package Microsoft.AspNetCore.Mvc
 ```
 
 
-## 3. Add MVC package
+## 4. Add MVC package
 - Open `Startup.cs`
 - Add MVC module to the web pipeline in the `Configure` method
 ```
@@ -71,7 +77,7 @@ services.AddMvc();
 ```
 
 
-## 4. Add Heros Controller
+## 5. Add Heros Controller
 - Create `Controllers` folder
 - Add `HerosController` class inside `Controllers` folder...
 ```
