@@ -3,7 +3,7 @@
 Goal: To build and host .NET Core API with edge to edge unit tests using .net core TestServer and host in docker.
 
 
-# Prerequesits
+# Prerequisites
 - Install dotnet
 
 Chocolatey
@@ -14,10 +14,6 @@ choco install dotnetcore-sdk
 or
 
 [Download installer](https://www.microsoft.com/net/download)
-
-- Install docker
-
-[Download installer](https://www.docker.com/products/docker-desktop)
 
 
 # Hello world
@@ -65,9 +61,7 @@ At this point we know our API is configured correctly and we are routing correct
 ## 4. Test for the expected heros data from the API
 A `CharactersProvider` has been provided that you can use to get a list of characters which are loaded from Amazon S3. Navigate to [https://s3.eu-west-2.amazonaws.com/build-circle/characters.json] to see the content.
 
-We only want to return the heros from that list. Add some more assertions to your test that verify this behaviour.
-
-We should have assertions for the amount of items in the list and that one of the items has the correct data.
+We only want to return the heros from that list. Add some more assertions to your test that verify this behaviour. We should have assertions for the amount of items in the list and that one of the items has the correct data.
 
 Tip: you can deserialise the items like this:
 ```
@@ -84,11 +78,79 @@ var items = responseObject.Value<JArray>("items");
 Use the `CharactersProvider` class to get the characters from S3 and filter out the villains. Then run the test again to make sure it behaves as expected.
 
 ## 6. Faking the boundary
-The characters data in S3 is dynamic so this level of integration test is not repeatable. To make our test more reliable, we should swap the boundary of the application for a fake or mock.
+The characters data in S3 is dynamic so this level of integration test is not repeatable. To make our test more reliable, we should swap the boundary of the application for a fake or mock. We can do this by registering a fake `ICharactersProvider` which we can then take into the constructor of the `HerosController`.
 
+The following class works as a simple fake that we can use.
+```
+public class FakeCharactersProvider : ICharactersProvider
+{
+    CharactersResponse _response;
+    
+    public void FakeResponse(CharactersResponse response)
+    {
+        _response = response;
+    }
+
+    public Task<CharactersResponse> GetCharacters()
+    {
+        return Task.FromResult(_response);
+    }
+}
+```
+
+
+You can register an instance of this class by adding it to the host's service collection.
+```
+var charactersProvider = new FakeCharactersProvider();
+
+var startup = new WebHostBuilder()
+                .UseStartup<Startup>()
+                .ConfigureServices(x => 
+                {
+                    x.AddSingleton<ICharactersProvider>(charactersProvider);
+                });
+var testServer = new TestServer(startup);
+var client = testServer.CreateClient();
+
+charactersProvider.FakeResponse(new CharactersResponse
+{
+    Items = new []
+    {
+        new CharacterResponse
+        {
+            Name = "Batman",
+            Score = 8.3,
+            Type = "hero"
+        },
+        new CharacterResponse
+        {
+            Name = "Joker",
+            Score = 8.2,
+            Type = "villain"
+        }
+    }
+});
+```
+
+# 7. Inject the fake
+Inject the fake into the constructor of `HerosController`.
+
+```
+private readonly ICharactersProvider _charactersProvider;
+
+public HerosController(ICharactersProvider charactersProvider)
+{
+    _charactersProvider = charactersProvider;
+}
+```
+Your test should now pass.
 
 
 # Run with Docker
+
+## Prerequisites
+- [Install docker](https://www.docker.com/products/docker-desktop)
+
 ```
 docker build .
 docker run -p 5000:80 -d <container-id>
