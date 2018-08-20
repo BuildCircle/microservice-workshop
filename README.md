@@ -20,7 +20,7 @@ Goal: To build and host .NET Core API with edge to edge unit tests using .net co
 # Hello world
 Run the API
 ```
-dotnet run MicroserviceWorkshop
+dotnet run --project MicroserviceWorkshop
 ```
 The API should start and show you the uris to access it from. Verify the API is running by navigating there in your browser.
 
