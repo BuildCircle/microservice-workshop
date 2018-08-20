@@ -155,7 +155,7 @@ To build a docker container to host our app we must create a [Dockerfile](https:
 
 We are going to create a Dockerfile that builds and publishes the artifacts of our app from the dotnet sdk container. We will then use those artifacts in our dotnet core runtime container as our entrypoint.
 
-### Building the app
+### Build steps
 1. Create a file named `Dockerfile` in the root of the project. Add the following line to load the dotnet sdk container.
 ```
 FROM microsoft/dotnet:2.1-sdk AS build-env
@@ -172,7 +172,7 @@ WORKDIR /app/src
 RUN dotnet publish -c Release -o ../out
 ```
 
-### Running the app
+### Run steps
 1. In the same Dockerfile, load the dotnet runtime container.
 ```
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
@@ -186,13 +186,13 @@ EXPOSE 80
 COPY --from=build-env /app/out .
 ```
 
-3. Run the app
+3. Run
 ```
 ENTRYPOINT ["dotnet", "MicroserviceWorkshop.dll"]
 ```
 
-## Run the app
-Now that we have built a container we can run it.
+## Build and run the container
+Now that we have a Dockerfile we can build and run it.
 ```
 docker build .
 docker run -p 5000:80 -d <container-id>
