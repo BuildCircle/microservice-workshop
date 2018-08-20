@@ -148,9 +148,51 @@ Your test should now pass.
 
 # Run with Docker
 
-## Prerequisites
 - [Install docker](https://www.docker.com/products/docker-desktop)
 
+## Create Dockerfile
+To build a docker container to host our app we must create a [Dockerfile](https://docs.docker.com/engine/reference/builder/).
+
+We are going to create a Dockerfile that builds and publishes the artifacts of our app from the dotnet sdk container. We will then use those artifacts in our dotnet core runtime container as our entrypoint.
+
+### Building the app
+1. Create a file named `Dockerfile` in the root of the project. Add the following line to load the dotnet sdk container.
+```
+FROM microsoft/dotnet:2.1-sdk AS build-env
+```
+
+2. Copy the source code from our project to the container.
+```
+COPY ./MicroserviceWorkshop /app/src/
+```
+
+3. Build and publish the artefacts.
+```
+WORKDIR /app/src
+RUN dotnet publish -c Release -o ../out
+```
+
+### Running the app
+1. In the same Dockerfile, load the dotnet runtime container.
+```
+FROM microsoft/dotnet:2.1-aspnetcore-runtime
+```
+
+2. Copy the artefacts from the dotnet sdk container into the `app` directory of the dotnet runtime container.
+```
+WORKDIR /app
+EXPOSE 80
+
+COPY --from=build-env /app/out .
+```
+
+3. Run the app
+```
+ENTRYPOINT ["dotnet", "MicroserviceWorkshop.dll"]
+```
+
+## Run the app
+Now that we have built a container we can run it.
 ```
 docker build .
 docker run -p 5000:80 -d <container-id>
