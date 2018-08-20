@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MicroservicesWorkshop.Tests
+namespace MicroserviceWorkshop.Tests
 {
     public class HerosTests
     {
