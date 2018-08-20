@@ -15,7 +15,7 @@ namespace MicroserviceWorkshop.Tests
     public class HerosTests
     {
         [Fact]
-        public async Task CanGetHeros()
+        public void CanGetHeros()
         {
             true.Should().BeTrue();
         }
