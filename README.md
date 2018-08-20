@@ -76,7 +76,19 @@ ENTRYPOINT ["dotnet", "MicroserviceWorkshop.dll"]
 Now that we have a Dockerfile we can build and run it.
 ```
 docker build .
-docker run -p 5000:80 -d <container-id>
+docker run -p 5000:80 --name=microservice-workshop <container-id>
+```
+
+Test it by navigating to [http://localhost:5000]
+
+Stop the running container
+```
+docker stop microservice-workshop
+```
+
+Remove the container
+```
+docker rm microservice-workshop
 ```
 
 # Docker compose
