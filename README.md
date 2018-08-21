@@ -45,6 +45,17 @@ FROM microsoft/dotnet:2.1-sdk AS build-env
 COPY ./MicroserviceWorkshop /app/src/
 ```
 
+If you build and run the container now, you can see our source files in the `/app/src/` directory.
+```
+docker build .
+docker run -p 5000:80 -it --name=microservice-workshop <container-id>
+cd /app/src
+ls
+exit
+
+docker rm microservice-workshop
+```
+
 3. Build and publish the artefacts.
 ```
 WORKDIR /app/src
