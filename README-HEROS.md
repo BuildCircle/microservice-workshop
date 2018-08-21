@@ -1,8 +1,8 @@
 # Edge testing
 
-To build microservices you need good tests. Ideally our tests should cover behaviour of the API without being too coupled to the implementation. 
+To build microservices you need good tests. Ideally our tests should cover behaviour of the API without being too coupled to the implementation.
 
-To assert behaviour we are going to use the `TestServer` and `WebHostBuilder` classes to host our API in-memory and make requests to it. This will be the entry point of our tests.
+Goal: To create the unit tests that cover as much code as possible. To use the dotnet core `TestServer` and `WebHostBuilder` classes to host our API in-memory and test against it.
 
 We are going to create an API endpoint `/heros` that pulls a list of characters from Amazon S3, filters out the villains and returns only the superheros.
 

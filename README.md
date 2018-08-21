@@ -1,6 +1,6 @@
 # microservice-workshop
 
-Goal: To build and host .NET Core API with edge to edge unit tests using .net core TestServer and host in docker.
+Goal: To run a .NET api in a docker container, and use docker compose to make it easier.
 
 
 # Prerequisites
